@@ -13,7 +13,9 @@ body {
   background: var(--background-color);
 }
 
-html {
+html, body {
+  height: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -31,7 +33,22 @@ section#contact {
   background: rgb(0,0,0);
   background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(53,53,166,1) 50%, rgba(0,0,0,1) 100%);
 }
-section#about {
+section#home {
   background: rgb(2,0,36);
   background: radial-gradient(circle, rgba(2,0,36,1) 26%, rgba(53,53,166,1) 33%, rgba(0,0,0,1) 48%, rgba(0,0,0,1) 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: black;
+}
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
 }
