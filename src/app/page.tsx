@@ -1,8 +1,7 @@
 'use client'
 import React from "react";
 import {CIcon} from "@coreui/icons-react";
-import {cibGithub, cibLinkedin} from "@coreui/icons";
-
+import {cibGithub, cibGmail, cibLinkedin} from "@coreui/icons";
 
 export default function Home() {
 
@@ -26,6 +25,7 @@ export default function Home() {
           <ul className="flex gap-2 m-2">
             <li className="min-w-8 min-h-8"><a className="fill-white" href="https://www.linkedin.com/in/marko-vojinovic-578b14208"><CIcon icon={cibLinkedin} /></a></li>
             <li className="min-w-8 min-h-8"><a className="fill-white" href="https://github.com/Vojinovic-M"><CIcon icon={cibGithub} /></a></li>
+            <li className="min-w-8 min-h-8"><a className="fill-white" href="mailto:vojinovic.m@protonmail.com"><CIcon icon={cibGmail} /></a></li>
           </ul>
         </section>
 
