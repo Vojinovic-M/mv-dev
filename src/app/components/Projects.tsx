@@ -50,85 +50,88 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0]| null>(null);
 
     return (
-        <section id="projects" className="h-screen flex flex-col items-center justify-center text-center p-8">
+        <section id="projects" className="h-screen w-full flex flex-col justify-center text-center p-8">
             <h1 className="text-4xl font-light p-8">My Projects</h1>
-            <div className="h-screen w-screen grid grid-cols-3 grid-rows-3">
-                {/* Render a 3x3 grid of projects */}
-                {[...Array(9)].map((_, index) => {
-                    const project = projectPositions.get(index);
+            <div className="w-full h-full flex justify-center">
+                <div className="h-full max-w-7xl w-full grid grid-cols-3 grid-rows-3">
 
-                    return (<div
-                            key={index}
-                            className={`relative flex items-center justify-center overflow-hidden group ${
-                                project ? "cursor-pointer" : "cursor-default"
-                            }`}
-                            onClick={() => project && setSelectedProject(project)}>
-                            {project ? (
-                                <>
-                                    {/* Display project image */}
-                                    <img src={project.image}
-                                         alt={project.name}
-                                         className="absolute w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110 brightness-75"
-                                    />
-                                    {/* Overlay with project name */}
-                                    <div
-                                        className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <h3 className="text-white text-2xl font-bold">{project.name}</h3>
-                                    </div>
-                                </>
-                            ) : (<span className="text-gray-500 text-xl">Coming soon...</span>)}
-                        </div>
-                    );
-                })}
-                {/* Modal for displaying selected project details */}
-                {selectedProject && (
-                    <div
-                        className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 overflow-hidden"
-                        onClick={() => setSelectedProject(null)}>
+                    {/* Render a 3x3 grid of projects */}
+                    {[...Array(9)].map((_, index) => {
+                        const project = projectPositions.get(index);
+
+                        return (<div
+                                key={index}
+                                className={`relative flex items-center justify-center overflow-hidden group ${
+                                    project ? "cursor-pointer" : "cursor-default"
+                                }`}
+                                onClick={() => project && setSelectedProject(project)}>
+                                {project ? (
+                                    <>
+                                        {/* Display project image */}
+                                        <img src={project.image}
+                                             alt={project.name}
+                                             className="absolute w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110 brightness-75"
+                                        />
+                                        {/* Overlay with project name */}
+                                        <div
+                                            className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <h3 className="text-white text-2xl font-bold">{project.name}</h3>
+                                        </div>
+                                    </>
+                                ) : (<span className="text-gray-500 text-xl">Coming soon...</span>)}
+                            </div>
+                        );
+                    })}
+                    {/* Modal for displaying selected project details */}
+                    {selectedProject && (
                         <div
-                            className="bg-black p-8 rounded-lg shadow-xl w-full h-[90vh] max-w-4xl overflow-y-auto relative"
-                            onClick={(e) => e.stopPropagation()}>  {/*Prevent closing when clicking inside the modal*/}
-                            <h2 className="text-4xl font-light mb-4 text-white text-center">{selectedProject.name}</h2>
-                            {/* Links Section */}
-                            <div className="flex justify-center gap-4 mb-6">
-                                {selectedProject.links.map((link, index) => (
-                                    <a key={index}
-                                       href={link.url}
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                                        {link.label}
-                                    </a>
-                                ))}
-                            </div>
-                            {/* Project Image(s) */}
-                            <div className="w-full aspect-square bg-black flex items-center justify-center mb-6">
-                                <img
-                                    src={selectedProject.image}
-                                    alt={selectedProject.name}
-                                    className="max-w-full max-h-full object-contain"
-                                />
-                            </div>
+                            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 overflow-hidden z-20"
+                            onClick={() => setSelectedProject(null)}>
+                            <div
+                                className="bg-black p-8 rounded-lg shadow-xl w-full h-[90vh] max-w-4xl overflow-y-auto relative"
+                                onClick={(e) => e.stopPropagation()}>  {/*Prevent closing when clicking inside the modal*/}
+                                <h2 className="text-4xl font-light mb-4 text-white text-center">{selectedProject.name}</h2>
+                                {/* Links Section */}
+                                <div className="flex justify-center gap-4 mb-6">
+                                    {selectedProject.links.map((link, index) => (
+                                        <a key={index}
+                                           href={link.url}
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
+                                {/* Project Image(s) */}
+                                <div className="w-full aspect-square bg-black flex items-center justify-center mb-6">
+                                    <img
+                                        src={selectedProject.image}
+                                        alt={selectedProject.name}
+                                        className="max-w-full max-h-full object-contain"
+                                    />
+                                </div>
 
-                            {/* Project Details */}
-                            <ul className="text-left space-y-2 text-lg text-gray-300 mb-6">
-                                <li><strong>Type:</strong> {selectedProject.type}</li>
-                                <li><strong>Technologies:</strong> {selectedProject.technologies.join(", ")}</li>
-                                <li><strong>Description:</strong> {selectedProject.description}</li>
-                            </ul>
+                                {/* Project Details */}
+                                <ul className="text-left space-y-2 text-lg text-gray-300 mb-6">
+                                    <li><strong>Type:</strong> {selectedProject.type}</li>
+                                    <li><strong>Technologies:</strong> {selectedProject.technologies.join(", ")}</li>
+                                    <li><strong>Description:</strong> {selectedProject.description}</li>
+                                </ul>
 
-                            {/* Close Button */}
-                            <div className="flex justify-center">
-                                <button
-                                    className="bg-white text-black px-6 py-3 rounded-lg hover:text-blue-600 transition text-lg font-semibold"
-                                    onClick={() => setSelectedProject(null)}>
-                                    Close
-                                </button>
+                                {/* Close Button */}
+                                <div className="flex justify-center">
+                                    <button
+                                        className="bg-white text-black px-6 py-3 rounded-lg hover:text-blue-600 transition text-lg font-semibold"
+                                        onClick={() => setSelectedProject(null)}>
+                                        Close
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
         </section>
-    );
+);
 }
