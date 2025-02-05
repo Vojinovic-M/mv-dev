@@ -11,14 +11,15 @@ export default function Hero() {
                className="mt-6 bg-white text-black px-6 py-2 rounded-md shadow-lg hover:bg-gray-300 hover:transition">Contact
                 Me</a>
             {/* Social media icons */}
-            <ul className="flex gap-2 m-2">
-                <li className="min-w-8 min-h-8"><a className="fill-white"
-                                                   href="https://www.linkedin.com/in/marko-vojinovic-578b14208"><CIcon
-                    icon={cibLinkedin}/></a></li>
-                <li className="min-w-8 min-h-8"><a className="fill-white" href="https://github.com/Vojinovic-M"><CIcon
-                    icon={cibGithub}/></a></li>
-                <li className="min-w-8 min-h-8"><a className="fill-white"
-                                                   href="mailto:vojinovic.m@protonmail.com"><CIcon icon={cibGmail}/></a>
+            <ul className="flex gap-4 m-8">
+                <li className="min-w-8 min-h-8"><a className="fill-white" href="https://www.linkedin.com/in/marko-vojinovic-578b14208">
+                    <CIcon icon={cibLinkedin}/></a>
+                </li>
+                <li className="min-w-8 min-h-8"><a className="fill-white" href="https://github.com/Vojinovic-M">
+                    <CIcon icon={cibGithub}/></a>
+                </li>
+                <li className="min-w-8 min-h-8"><a className="fill-white" href="mailto:vojinovic.m@protonmail.com">
+                    <CIcon icon={cibGmail}/></a>
                 </li>
             </ul>
         </section>
