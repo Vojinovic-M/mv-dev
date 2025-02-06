@@ -1,24 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 export default function Contact() {
+    const [submitted, setSubmitted] = useState(false);
+
     return (
         <section id="contact" className="relative mt-40 text-white py-16">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 overflow-hidden">
-                <svg className="absolute top-0 right-0 w-64 h-64 text-gray-800" fill="none" viewBox="0 0 200 200"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M130 200V.5M.5 .5H200" stroke="currentColor" strokeOpacity="0.2"/>
-                </svg>
-            </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16 relative z-10">
                 {/* Contact Info */}
                 <motion.div
                     className="w-full lg:w-1/2 text-center lg:text-left"
                     initial={{opacity: 0, x: -50}}
-                    animate={{opacity: 1, x: 0}}
+                    whileInView={{opacity: 1, x: 0}}
+                    viewport={{once: true, amount: 0.2}}
                     transition={{duration: 0.8}}
                 >
                     <h2 className="text-4xl font-light mb-4">Get in Touch</h2>
@@ -46,6 +42,7 @@ export default function Contact() {
                 {/* Contact Form */}
                 <form action="https://formsubmit.co/vojinovic.m@protonmail.com" method="POST"
                       className="w-full lg:w-1/2 bg-gray-900 p-8 rounded-lg shadow-lg"
+                      onSubmit={() => setSubmitted(true)}
                 >
                     <label className="block mb-2">Name</label>
                     <input
@@ -71,8 +68,8 @@ export default function Contact() {
                     />
 
                     <button type="submit"
-                            className="w-full bg-gray-100 text-black px-4 py-3 rounded-lg hover:bg-blue-600 transition">
-                        Send Message
+                            className="w-full bg-gray-100 text-black px-4 py-3 rounded-lg hover:bg-blue-200 transition">
+                        { submitted ? "Message sent!" : "Send message" }
                     </button>
                 </form>
             </div>

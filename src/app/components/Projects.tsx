@@ -1,137 +1,93 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import Expandable, { projects } from "@/components/carousel/expandable";
+import Image from "next/image";
 
-const projects = [
-    {
-        name: "Snake Game (Functional Oriented Programming)",
-        image: "/snakegame.png",
-        type: "Game",
-        technologies: ["JavaScript", "HTML", "CSS", "Functional programming"],
-        description: "A classic Snake game implemented using HTML Canvas and JavaScript. " +
-            "It includes food mechanics, Supabase database hosting a leaderboard and collision detection.",
-        links: [
-            { label: "GitHub", url: "https://github.com/Vojinovic-M/zmijica" },
-            { label: "Live Demo", url: "https://zmijica.vercel.app/" }
-        ]
-    },
-    {
-        name: "Full Stack Pet Shop Web Application (Angular + Spring)",
-        image: "/petshop.png",
-        type: "Website",
-        technologies: ["Angular", "Spring Boot", "Tailwind CSS", "MySQL"],
-        description: "A fully functional pet shop e-commerce platform with user authentication, a shopping cart, and order management." +
-            "**NOTE**: The live demo does NOT include the backend, therefore only the frontend skeleton is usable.",
-        links: [
-            { label: "GitHub (Angular Frontend)", url: "https://github.com/Vojinovic-M/angular-pet-shop" },
-            { label: "GitHub (Spring Backend)", url: "https://github.com/Vojinovic-M/spring-pet-shop" },
-            { label: "Live Demo", url: "https://angular-pet-shop.vercel.app/" }
-        ]
-    },
-    {
-        name: "Real Estate Pricing Analysis - Amsterdam",
-        image: "/realestate.png",
-        type: "Data Analytics",
-        technologies: ["Python", "Pandas", "Jupyter Notebook", "Matplotlib"],
-        description: "An analysis of real estate price trends using Python, visualizing price fluctuations and predicting trends based on historical data.",
-        links: [
-            { label: "GitHub", url: "https://github.com/Vojinovic-M/python-predicting-real-estate-prices-amsterdam"},
-            { label: "Google Colab Presentation", url: "https://colab.research.google.com/github/Vojinovic-M/python-predicting-real-estate-prices-amsterdam/blob/main/Amsterdam.ipynb"}
-        ]
-    },
-];
 
-const projectPositions = new Map([
-    [0, projects[0]], // Top-left
-    [4, projects[1]], // Center
-    [8, projects[2]], // Bottom-right
-]);
-
-// Projects Component - Displays a grid of projects
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0]| null>(null);
+    const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
     return (
-        <section id="projects" className="h-screen w-full flex flex-col justify-center text-center p-8">
-            <h1 className="text-4xl font-light p-8">My Projects</h1>
-            <div className="w-full h-full flex justify-center">
-                <div className="h-full max-w-7xl w-full grid grid-cols-3 grid-rows-3">
+        <section id="projects" className="h-screen w-full flex flex-col text-center p-8">
+            <h1 className="text-4xl font-light p-8">Selected Projects</h1>
 
-                    {/* Render a 3x3 grid of projects */}
-                    {[...Array(9)].map((_, index) => {
-                        const project = projectPositions.get(index);
+            <p className="mb-12 mt-20 font-light max-w-7xl mx-auto">
+                These projects cover much of my frontend, backend and functional JS capabilities.
+                Not only that, but also my data analysis skills in Python.<br/> I especially take great pride in
+                my Angular Pet Shop project because it took a lot of effort and it gave me an infinitely better
+                understanding of Angular and frontend technologies in general.
+                <br/><br/> And now, I&#39;m translating that
+                same knowledge into NextJS by building this website. The carousel below was made using an Animata component
+                which I&#39;ve modified to map my own data through an array of items. You will find detailed descriptions
+                of all 3 projects on their GitHub pages!
+            </p>
+            {/* Expandable Carousel */}
+            <Expandable
+                {...projects.map((project, index) => (
+                    <div key={index} onClick={() => setSelectedProject(project)}>
+                        <Image src={project.image} alt={project.name} />
+                    </div>
+                ))}
+                autoPlay={true}
+                className="mx-auto max-w-7xl h-1/2"
+                onClick={(index) => setSelectedProject(projects[index])} // Open modal on click
+            />
 
-                        return (<div
-                                key={index}
-                                className={`relative flex items-center justify-center overflow-hidden group ${
-                                    project ? "cursor-pointer" : "cursor-default"
-                                }`}
-                                onClick={() => project && setSelectedProject(project)}>
-                                {project ? (
-                                    <>
-                                        {/* Display project image */}
-                                        <img src={project.image}
-                                             alt={project.name}
-                                             className="absolute w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110 brightness-75"
-                                        />
-                                        {/* Overlay with project name */}
-                                        <div
-                                            className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <h3 className="text-white text-2xl font-bold">{project.name}</h3>
-                                        </div>
-                                    </>
-                                ) : (<span className="text-gray-500 text-xl">Coming soon...</span>)}
-                            </div>
-                        );
-                    })}
-                    {/* Modal for displaying selected project details */}
-                    {selectedProject && (
-                        <div
-                            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 overflow-hidden z-20"
-                            onClick={() => setSelectedProject(null)}>
-                            <div
-                                className="bg-black p-8 rounded-lg shadow-xl w-full h-[90vh] max-w-4xl overflow-y-auto relative"
-                                onClick={(e) => e.stopPropagation()}>  {/*Prevent closing when clicking inside the modal*/}
-                                <h2 className="text-4xl font-light mb-4 text-white text-center">{selectedProject.name}</h2>
-                                {/* Links Section */}
-                                <div className="flex justify-center gap-4 mb-6">
-                                    {selectedProject.links.map((link, index) => (
-                                        <a key={index}
-                                           href={link.url}
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                                            {link.label}
-                                        </a>
-                                    ))}
-                                </div>
-                                {/* Project Image(s) */}
-                                <div className="w-full aspect-square bg-black flex items-center justify-center mb-6">
-                                    <img
-                                        src={selectedProject.image}
-                                        alt={selectedProject.name}
-                                        className="max-w-full max-h-full object-contain"
-                                    />
-                                </div>
+            {/* Project Details Modal */}
+            {selectedProject && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 overflow-hidden z-20"
+                    onClick={() => setSelectedProject(null)}
+                >
+                    <div
+                        className="bg-black p-8 rounded-lg shadow-xl w-full h-[90vh] max-w-4xl overflow-y-auto relative"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <h2 className="text-4xl font-light mb-4 text-white text-center">{selectedProject.name}</h2>
 
-                                {/* Project Details */}
-                                <ul className="text-left space-y-2 text-lg text-gray-300 mb-6">
-                                    <li><strong>Type:</strong> {selectedProject.type}</li>
-                                    <li><strong>Technologies:</strong> {selectedProject.technologies.join(", ")}</li>
-                                    <li><strong>Description:</strong> {selectedProject.description}</li>
-                                </ul>
-
-                                {/* Close Button */}
-                                <div className="flex justify-center">
-                                    <button
-                                        className="bg-white text-black px-6 py-3 rounded-lg hover:text-blue-600 transition text-lg font-semibold"
-                                        onClick={() => setSelectedProject(null)}>
-                                        Close
-                                    </button>
-                                </div>
-                            </div>
+                        {/* Links */}
+                        <div className="flex justify-center gap-4 mb-6">
+                            {selectedProject.links.map((link, index) => (
+                                <a key={index}
+                                   href={link.url}
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                                >
+                                    {link.label}
+                                </a>
+                            ))}
                         </div>
-                    )}
+
+                        {/* Image */}
+                        <div className="w-full aspect-square bg-black flex items-center justify-center mb-6">
+                            <Image
+                                src={selectedProject.image}
+                                alt={selectedProject.name}
+                                width={1000}
+                                height={1000}
+                                className="max-w-full max-h-full object-contain"
+                            />
+                        </div>
+
+                        {/* Details */}
+                        <ul className="text-left space-y-2 text-lg text-gray-300 mb-6">
+                            <li><strong>Type:</strong> {selectedProject.type}</li>
+                            <li><strong>Technologies:</strong> {selectedProject.technologies.join(", ")}</li>
+                            <li><strong>Description:</strong> {selectedProject.description}</li>
+                        </ul>
+
+                        {/* Close Button */}
+                        <div className="flex justify-center">
+                            <button
+                                className="bg-white text-black px-6 py-3 rounded-lg hover:text-blue-600 transition text-lg font-semibold"
+                                onClick={() => setSelectedProject(null)}
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            )}
         </section>
-);
+    );
 }

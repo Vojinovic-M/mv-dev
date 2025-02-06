@@ -27,24 +27,15 @@ const timelineEvents = [
 export default function Details() {
     return (
         <section id="details" className="min-h-screen p-8 text-white">
-            <motion.h1 className="text-4xl font-light text-center mb-8"
-                       initial={{opacity: 0, y: -20}}
-                       animate={{opacity: 1, y: 0}}
-                       transition={{duration: 0.8}}
-            >Professional Journey
-            </motion.h1>
+            <h1 className="text-4xl font-light text-center mb-8">
+                Professional Journey
+            </h1>
 
-            <motion.p
-                className="text-center max-w-3xl mx-auto mb-8 text-gray-300"
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                transition={{duration: 1}}
-            >
-                Throughout my academic and professional career, I have continuously pursued knowledge and hands-on
-                experience in software development, system administration, and IT solutions. These are some of the key
-                milestones
-                that have shaped my journey as a software engineer.
-            </motion.p>
+            <p className="text-center max-w-3xl mx-auto mb-8 text-gray-300">
+                Throughout my academic and professional career, I&#39;ve continuously pursued knowledge and hands-on
+                experience in creating IT solutions. These are some of the key
+                milestones that have shaped my journey as a software engineer:
+            </p>
 
             <div
                 className="flex flex-col items-center relative before:absolute before:w-1 before:h-full before:bg-gray-400 before:left-1/2 before:-translate-x-1/2">
@@ -65,25 +56,15 @@ export default function Details() {
                 ))}
             </div>
 
-            <motion.div className="text-center mt-8"
-                        initial={{scale: 0.8, opacity: 0}}
-                        animate={{scale: 1, opacity: 1}}
-                        transition={{type: "spring", stiffness: 100}}
-            >
+            <div className="text-center mt-8">
                 <a href="/Marko_Vojinovic_CV.pdf" download
                    className="bg-white text-black px-6 py-3 rounded-lg shadow-lg hover:bg-gray-300 transition">
                     Download CV
                 </a>
-            </motion.div>
-            <motion.p className="text-center max-w-3xl mx-auto mb-8 text-gray-300 mt-16"
-                      initial={{opacity: 0}}
-                      animate={{opacity: 1}}
-                      transition={{duration: 1.2}}
-            >
-                As I continue to advance in my career, I am eager to embrace new challenges, expand my technical
-                expertise,
-                and contribute to innovative projects that make a difference in the industry.
-            </motion.p>
+            </div>
+            <p className="text-center max-w-3xl mx-auto mb-8 text-gray-300 mt-16">
+                I built this website myself using NextJS and TailwindCSS plus Animata for a special touch.
+            </p>
         </section>
     )
 }
