@@ -159,7 +159,7 @@ const createAnimatedNodes = (args: ReducedValue, word: string, index: number): R
           length={length}
           delay={delay}
       />
-            {!isLast && " "}
+            {!isLast && <span>&nbsp;</span>}
     </span>
     );
 
