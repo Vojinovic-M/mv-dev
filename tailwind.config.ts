@@ -34,5 +34,3 @@ export default {
   },
   plugins: [animate],
 } satisfies Config;
-
-// no i don't like those. i made a list of the ones i want on the website. first things first, i want this one instead of the grid:

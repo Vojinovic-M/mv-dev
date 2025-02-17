@@ -3,22 +3,22 @@ import { motion } from "framer-motion";
 
 const timelineEvents = [
     {
-        year: "2021 - 2025",
+        heading: "2021 - 2025",
         title: "Singidunum University",
         description: "Pursuing a degree in Software and Information Engineering.",
     },
     {
-        year: "Mar - May 2024",
+        heading: "Mar - May 2024",
         title: "Salesforce Developer Internship (Intermino)",
         description: "Worked with APEX, automated business processes, and enhanced problem-solving skills.",
     },
     {
-        year: "Red Hat RH124",
+        heading: "Red Hat RH124",
         title: "Red Hat System Administration I",
         description: "Gained foundational knowledge in Linux system administration.",
     },
     {
-        year: "IBM Certification",
+        heading: "IBM Certification",
         title: "Essentials of Rational Software Architect",
         description: "Learned software modeling techniques and software engineering principles.",
     },
@@ -49,7 +49,7 @@ export default function Details() {
                     >
                         <div className="bg-gray-950 p-6 rounded-lg shadow-lg text-center w-3/4 border border-gray-600">
                             <h2 className="text-xl font-bold">{event.title}</h2>
-                            <p className="text-gray-300 text-sm">{event.year}</p>
+                            <p className="text-gray-300 text-sm">{event.heading}</p>
                             <p className="mt-2">{event.description}</p>
                         </div>
                     </motion.div>
