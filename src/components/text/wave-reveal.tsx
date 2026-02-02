@@ -56,19 +56,18 @@ interface ReducedValue extends Pick<WaveRevealProps, "direction" | "mode"> {
 }
 
 const Word = ({
-                  isWordMode,
-                  word,
-                  index,
-                  offset,
-                  delay,
-                  duration,
-                  className,
-              }: Pick<ReducedValue, "delay" | "duration" | "offset"> & {
+    isWordMode,
+    word,
+    index,
+    offset,
+    delay,
+    duration,
+    className,
+}: Pick<ReducedValue, "delay" | "duration" | "offset"> & {
     index: number;
     className: string;
     isWordMode: boolean;
     word: string;
-    length: number;
 }) => {
     if (isWordMode) {
         return word;
@@ -156,7 +155,6 @@ const createAnimatedNodes = (args: ReducedValue, word: string, index: number): R
           offset={offset}
           duration={duration}
           className={className}
-          length={length}
           delay={delay}
       />
             {!isLast && <span>&nbsp;</span>}
@@ -171,15 +169,15 @@ const createAnimatedNodes = (args: ReducedValue, word: string, index: number): R
 };
 
 export default function WaveReveal({
-                                       text,
-                                       direction = "down",
-                                       mode = "word",
-                                       className,
-                                       duration = "2000ms",
-                                       delay = 0,
-                                       blur = true,
-                                       letterClassName,
-                                   }: WaveRevealProps) {
+    text,
+    direction = "down",
+    mode = "word",
+    className,
+    duration = "2000ms",
+    delay = 0,
+    blur = true,
+    letterClassName,
+}: Readonly<WaveRevealProps>) {
     if (!text) {
         return null;
     }

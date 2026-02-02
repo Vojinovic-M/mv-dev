@@ -8,10 +8,11 @@ export default function Hero() {
         <section id="home" className="h-screen flex flex-col items-center justify-center text-center p-8 z-10">
             <div className="blob"></div>
             <h1 className="text-7xl font-light p-2">Marko Vojinovic</h1>
-            <p className="text-lg text-gray-300">Software Engineering Student | Web Developer</p>
+            <p className="text-lg text-gray-300">an exquisite software engineer</p>
             <a href="#contact"
-               className="mt-6 bg-white text-black px-6 py-2 rounded-md shadow-lg hover:bg-gray-300 hover:transition">Contact
-                Me</a>
+                className="inline-flex items-center mt-4 gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all hover:scale-105 active:scale-95">
+                Contact me
+                </a>
             {/* Social media icons */}
             <ul className="flex gap-4 m-8">
                 <li className="min-w-8 min-h-8"><a className="fill-white"
